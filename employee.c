@@ -150,15 +150,24 @@ void upgrade(Employee *people, int *number)
 void show_sorted_saraly(Employee *people, int number)
 {
     Employee *sorted_employees[100];
-    Employee tmp;
+    Employee *tmp;
     int i,j;
     for(i = 0; i < number; i++){
         sorted_employees[i] = &people[i];
     }
     for(i = 0; i < number - 1; i++){
         for(j = i + 1; j < number; j++){
-            if(
+            if((*sorted_employees[i]).salary > (*sorted_employees[j]).salary){
+                tmp = sorted_employees[i];
+                sorted_employees[i] = sorted_employees[j];
+                sorted_employees[j] = tmp;
+            }
         }
+    }
+    for(i = 0; i < number; i++){
+        printf("番号: %d \n名前: %s\n年齢: %d\n年俸: %d\n\n",
+               (*sorted_employees[i]).staffID, (*sorted_employees[i]).familyName,
+               (*sorted_employees[i]).age, (*sorted_employees[i]).salary);
     }
     
 }
